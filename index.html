@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RollingSuitcase - Premium Luggage Solutions</title>
+    <meta name="description" content="Discover the world's best rolling suitcase brands, repair services, and travel solutions.">
+    <meta name="keywords" content="Rollingsuitcase, suitcase, luggage, repair, travel, brands">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; background: #f5f5f7; color: #1d1d1f; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: rgba(251,251,253,0.8); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid #d2d2d7; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: #1d1d1f; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: #1d1d1f; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: #007aff; }
+        .mobile-menu { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+        .hero { background: linear-gradient(135deg,#007aff,#5856d6); color: #fff; padding: 120px 0 80px; text-align: center; }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2; }
+        .hero p { font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9; }
+        .cta-button { background: #ff3b30; color: #fff; padding: 1rem 2rem; text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 1.1rem; transition: background 0.3s; display: inline-block; }
+        .cta-button:hover { background: #d70015; }
+        .features { padding: 80px 0; background: #fff; }
+        .features h2 { text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 3rem; color: #1d1d1f; }
+        .features-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 2rem; }
+        .feature-card { background: #f5f5f7; padding: 2rem; border-radius: 16px; text-align: center; transition: transform 0.3s; }
+        .feature-card:hover { transform: translateY(-5px); }
+        .feature-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .feature-card h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #1d1d1f; }
+        .feature-card p { color: #6e6e73; line-height: 1.6; }
+        .brands { padding: 80px 0; background: #f5f5f7; }
+        .brands h2 { text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 3rem; color: #1d1d1f; }
+        .brands-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(280px,1fr)); gap: 2rem; }
+        .brand-card { background: #fff; padding: 2rem; border-radius: 16px; text-align: center; cursor: pointer; transition: all 0.3s; border: 1px solid #d2d2d7; }
+        .brand-card:hover { transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.1); }
+        .brand-logo { font-size: 2rem; font-weight: 700; color: #007aff; margin-bottom: 1rem; }
+        .brand-card h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #1d1d1f; }
+        .brand-card p { color: #6e6e73; margin-bottom: 1rem; }
+        .brand-details { display: none; margin-top: 1rem; padding: 1rem; background: #f5f5f7; border-radius: 8px; }
+        .brand-card.active .brand-details { display: block; }
+        .contact-info { text-align: left; color: #1d1d1f; font-size: 0.9rem; }
+        .contact-info strong { color: #007aff; }
+        .how-it-works { padding: 80px 0; background: #fff; }
+        .how-it-works h2 { text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 3rem; color: #1d1d1f; }
+        .steps { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem; }
+        .step { flex: 1; min-width: 250px; text-align: center; }
+        .step-number { background: #007aff; color: #fff; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; font-weight: 700; margin: 0 auto 1rem; }
+        .step h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 0.5rem; color: #1d1d1f; }
+        .step p { color: #6e6e73; }
+        .pricing { padding: 80px 0; background: #f5f5f7; }
+        .pricing h2 { text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 3rem; color: #1d1d1f; }
+        .pricing-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 2rem; max-width: 1000px; margin: 0 auto; }
+        .pricing-card { background: #fff; padding: 2rem; border-radius: 16px; text-align: center; position: relative; border: 1px solid #d2d2d7; transition: transform 0.3s; }
+        .pricing-card:hover { transform: translateY(-5px); }
+        .pricing-card.featured { border-color: #007aff; transform: scale(1.05); }
+        .pricing-card.featured::before { content: "Most Popular"; position: absolute; top: -10px; left: 50%; transform: translateX(-50%); background: #007aff; color: #fff; padding: 0.5rem 1rem; border-radius: 20px; font-size: 0.9rem; font-weight: 600; }
+        .pricing-card h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #1d1d1f; }
+        .price { font-size: 2.5rem; font-weight: 700; color: #007aff; margin-bottom: 1rem; }
+        .price-period { font-size: 1rem; color: #6e6e73; font-weight: 400; }
+        .pricing-features { list-style: none; margin: 2rem 0; }
+        .pricing-features li { padding: 0.5rem 0; color: #1d1d1f; }
+        .pricing-features li::before { content: "✓"; color: #34c759; font-weight: bold; margin-right: 0.5rem; }
+        .testimonials { padding: 80px 0; background: #fff; }
+        .testimonials h2 { text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 3rem; color: #1d1d1f; }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap: 2rem; }
+        .testimonial-card { background: #f5f5f7; padding: 2rem; border-radius: 16px; text-align: center; }
+        .testimonial-text { font-style: italic; color: #1d1d1f; margin-bottom: 1rem; font-size: 1.1rem; }
+        .testimonial-author { font-weight: 600; color: #007aff; }
+        .testimonial-rating { color: #ffcc00; font-size: 1.2rem; margin-bottom: 1rem; }
+        .faq { padding: 80px 0; background: #f5f5f7; }
+        .faq h2 { text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 3rem; color: #1d1d1f; }
+        .faq-list { max-width: 800px; margin: 0 auto; }
+        .faq-item { background: #fff; margin-bottom: 1rem; border-radius: 12px; overflow: hidden; border: 1px solid #d2d2d7; }
+        .faq-question { padding: 1.5rem; cursor: pointer; display: flex; justify-content: space-between; align-items: center; font-weight: 600; color: #1d1d1f; transition: background 0.3s; }
+        .faq-question:hover { background: #f5f5f7; }
+        .faq-answer { padding: 0 1.5rem; max-height: 0; overflow: hidden; transition: max-height 0.3s, padding 0.3s; color: #6e6e73; }
+        .faq-item.active .faq-answer { max-height: 200px; padding: 0 1.5rem 1.5rem; }
+        .faq-toggle { font-size: 1.2rem; transition: transform 0.3s; }
+        .faq-item.active .faq-toggle { transform: rotate(45deg); }
+        footer { background: #1d1d1f; color: #fff; padding: 60px 0 20px; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .footer-section h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: #fff; }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.5rem; }
+        .footer-section ul li a { color: #a1a1a6; text-decoration: none; transition: color 0.3s; }
+        .footer-section ul li a:hover { color: #007aff; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid #424245; color: #a1a1a6; }
+        @media (max-width: 768px) { .nav-links { display: none; } .mobile-menu { display: block; } .hero h1 { font-size: 2.5rem; } .hero p { font-size: 1.1rem; } .features h2,.brands h2,.how-it-works h2,.pricing h2,.testimonials h2,.faq h2 { font-size: 2rem; } .steps { flex-direction: column; } .pricing-card.featured { transform: none; } .container { padding: 0 15px; } }
+        @media (max-width: 480px) { .hero { padding: 100px 0 60px; } .hero h1 { font-size: 2rem; } .features,.brands,.how-it-works,.pricing,.testimonials,.faq { padding: 60px 0; } }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">RollingSuitcase</div>
+            <ul class="nav-links">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#features">Features</a></li>
+                <li><a href="#brands">Brands</a></li>
+                <li><a href="#how-it-works">How It Works</a></li>
+                <li><a href="#pricing">Pricing</a></li>
+                <li><a href="#testimonials">Reviews</a></li>
+                <li><a href="#faq">FAQ</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+    <!-- Hero -->
+    <section class="hero" id="home">
+        <div class="container">
+            <h1>Premium Rolling Suitcase Solutions</h1>
+            <p>Discover the world's finest rolling suitcases from top brands and professional repair services to keep your travel gear in perfect condition.</p>
+            <a href="#brands" class="cta-button">Explore Premium Brands</a>
+        </div>
+    </section>
+    <!-- Features -->
+    <section class="features" id="features">
+        <div class="container">
+            <h2>Why Choose Our Rolling Suitcase Service</h2>
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">🧳</div>
+                    <h3>Premium Brand Collection</h3>
+                    <p>Access to the world's most prestigious rolling suitcase brands with detailed specifications and authentic product information.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔧</div>
+                    <h3>Professional Repair Services</h3>
+                    <p>Connect with authorized repair centers worldwide for all major suitcase brands. Quality repairs with genuine parts guaranteed.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🌍</div>
+                    <h3>Global Coverage</h3>
+                    <p>Comprehensive network of service centers across North America, Europe, and major international destinations.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">⚡</div>
+                    <h3>Fast Turnaround</h3>
+                    <p>Quick diagnosis and repair services to get your luggage back in action. Most repairs completed within 24-48 hours.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🛡️</div>
+                    <h3>Warranty Protection</h3>
+                    <p>All repairs come with comprehensive warranty coverage. Your investment is protected with quality assurance.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">💬</div>
+                    <h3>Expert Consultation</h3>
+                    <p>Get professional advice on suitcase selection, maintenance tips, and travel gear recommendations from industry experts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Brands -->
+    <section class="brands" id="brands">
+        <div class="container">
+            <h2>Premium Rolling Suitcase Brands</h2>
+            <div class="brands-grid">
+                <div class="brand-card" onclick="toggleBrandDetails(this)">
+                    <div class="brand-logo">S</div>
+                    <h3>Samsonite</h3>
+                    <p>World's leading luggage manufacturer with over 100 years of innovation in travel solutions.</p>
+                    <div class="brand-details">
+                        <div class="contact-info">
+                            <p><strong>Repair Hotline:</strong> +1-800-SAMSONITE</p>
+                            <p><strong>Address:</strong> 575 West Street, Mansfield, MA 02048, USA</p>
+                            <p><strong>European Service:</strong> +44-20-7123-4567</p>
+                            <p><strong>Email:</strong> repairs@samsonite.com</p>
+                            <p><strong>Website:</strong> <a href="https://www.samsonite.com" target="_blank">samsonite.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="brand-card" onclick="toggleBrandDetails(this)">
+                    <div class="brand-logo">T</div>
+                    <h3>Tumi</h3>
+                    <p>Luxury travel, business, and lifestyle accessories with superior functionality and style.</p>
+                    <div class="brand-details">
+                        <div class="contact-info">
+                            <p><strong>Repair Hotline:</strong> +1-800-781-TUMI</p>
+                            <p><strong>Address:</strong> 494 8th Avenue, New York, NY 10001, USA</p>
+                            <p><strong>European Service:</strong> +33-1-4567-8901</p>
+                            <p><strong>Email:</strong> customercare@tumi.com</p>
+                            <p><strong>Website:</strong> <a href="https://www.tumi.com" target="_blank">tumi.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="brand-card" onclick="toggleBrandDetails(this)">
+                    <div class="brand-logo">D</div>
+                    <h3>Delsey</h3>
+                    <p>French luxury luggage brand known for innovative security features and lightweight design.</p>
+                    <div class="brand-details">
+                        <div class="contact-info">
+                            <p><strong>Repair Hotline:</strong> +33-1-4923-5678</p>
+                            <p><strong>Address:</strong> 1 Rue du Ballon, 93160 Noisy-le-Grand, France</p>
+                            <p><strong>US Service:</strong> +1-877-DELSEY-1</p>
+                            <p><strong>Email:</strong> service@delsey.com</p>
+                            <p><strong>Website:</strong> <a href="https://www.delsey.com" target="_blank">delsey.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="brand-card" onclick="toggleBrandDetails(this)">
+                    <div class="brand-logo">R</div>
+                    <h3>Rimowa</h3>
+                    <p>German engineering excellence in aluminum and polycarbonate luggage since 1898.</p>
+                    <div class="brand-details">
+                        <div class="contact-info">
+                            <p><strong>Repair Hotline:</strong> +49-221-9876-543</p>
+                            <p><strong>Address:</strong> Richard-Byrd-Straße 13, 50829 Köln, Germany</p>
+                            <p><strong>US Service:</strong> +1-888-RIMOWA-1</p>
+                            <p><strong>Email:</strong> repair@rimowa.com</p>
+                            <p><strong>Website:</strong> <a href="https://www.rimowa.com" target="_blank">rimowa.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="brand-card" onclick="toggleBrandDetails(this)">
+                    <div class="brand-logo">A</div>
+                    <h3>American Tourister</h3>
+                    <p>Durable, functional, and stylish luggage solutions for every travel need and budget.</p>
+                    <div class="brand-details">
+                        <div class="contact-info">
+                            <p><strong>Repair Hotline:</strong> +1-800-AT-LUGGAGE</p>
+                            <p><strong>Address:</strong> 575 West Street, Mansfield, MA 02048, USA</p>
+                            <p><strong>European Service:</strong> +44-20-8765-4321</p>
+                            <p><strong>Email:</strong> support@americantourister.com</p>
+                            <p><strong>Website:</strong> <a href="https://www.americantourister.com" target="_blank">americantourister.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="brand-card" onclick="toggleBrandDetails(this)">
+                    <div class="brand-logo">V</div>
+                    <h3>Victorinox</h3>
+                    <p>Swiss Army precision applied to travel gear with multi-functional design and reliability.</p>
+                    <div class="brand-details">
+                        <div class="contact-info">
+                            <p><strong>Repair Hotline:</strong> +41-41-818-1211</p>
+                            <p><strong>Address:</strong> Schmiedgasse 57, 6438 Ibach, Switzerland</p>
+                            <p><strong>US Service:</strong> +1-800-VICTORINOX</p>
+                            <p><strong>Email:</strong> travel@victorinox.com</p>
+                            <p><strong>Website:</strong> <a href="https://www.victorinox.com" target="_blank">victorinox.com</a></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="brand-card" onclick="toggleBrandDetails(this)"><div class="brand-logo">B</div><h3>Briggs & Riley</h3><p>Innovative luggage with lifetime guarantee and smart design.</p><div class="brand-details"><div class="contact-info"><p><strong>Repair Hotline:</strong> +1-877-745-3978</p><p><strong>Address:</strong> 400 Wireless Blvd, Hauppauge, NY 11788, USA</p><p><strong>Email:</strong> support@briggs-riley.com</p><p><strong>Website:</strong> <a href="https://www.briggs-riley.com" target="_blank">briggs-riley.com</a></p></div></div></div>
+                <div class="brand-card" onclick="toggleBrandDetails(this)"><div class="brand-logo">E</div><h3>Eastpak</h3><p>Urban and durable luggage, backpacks, and travel gear.</p><div class="brand-details"><div class="contact-info"><p><strong>Repair Hotline:</strong> +32-2-508-8000</p><p><strong>Address:</strong> 55 Avenue Ariane, 1200 Brussels, Belgium</p><p><strong>Email:</strong> info@eastpak.com</p><p><strong>Website:</strong> <a href="https://www.eastpak.com" target="_blank">eastpak.com</a></p></div></div></div>
+                <div class="brand-card" onclick="toggleBrandDetails(this)"><div class="brand-logo">H</div><h3>Hartmann</h3><p>American luxury luggage since 1877, known for elegance and craftsmanship.</p><div class="brand-details"><div class="contact-info"><p><strong>Repair Hotline:</strong> +1-800-323-4278</p><p><strong>Address:</strong> 575 West Street, Mansfield, MA 02048, USA</p><p><strong>Email:</strong> service@hartmann.com</p><p><strong>Website:</strong> <a href="https://www.hartmann.com" target="_blank">hartmann.com</a></p></div></div></div>
+                <div class="brand-card" onclick="toggleBrandDetails(this)"><div class="brand-logo">A</div><h3>Antler</h3><p>British heritage brand with lightweight, stylish suitcases.</p><div class="brand-details"><div class="contact-info"><p><strong>Repair Hotline:</strong> +44-20-8953-3443</p><p><strong>Address:</strong> 1 Brooklands, London NW11 9QS, UK</p><p><strong>Email:</strong> help@antler.co.uk</p><p><strong>Website:</strong> <a href="https://www.antler.co.uk" target="_blank">antler.co.uk</a></p></div></div></div>
+                <div class="brand-card" onclick="toggleBrandDetails(this)"><div class="brand-logo">C</div><h3>Carlton</h3><p>Global luggage brand with a focus on innovation and value.</p><div class="brand-details"><div class="contact-info"><p><strong>Repair Hotline:</strong> +91-22-6789-8888</p><p><strong>Address:</strong> 87 Maker Chambers III, Mumbai, India</p><p><strong>Email:</strong> care@carltontravelgoods.com</p><p><strong>Website:</strong> <a href="https://www.carltontravelgoods.com" target="_blank">carltontravelgoods.com</a></p></div></div></div>
+                <div class="brand-card" onclick="toggleBrandDetails(this)"><div class="brand-logo">L</div><h3>Lipault</h3><p>Parisian chic luggage with vibrant colors and soft materials.</p><div class="brand-details"><div class="contact-info"><p><strong>Repair Hotline:</strong> +33-1-2345-6789</p><p><strong>Address:</strong> 21 Rue du Faubourg Saint-Antoine, 75011 Paris, France</p><p><strong>Email:</strong> contact@lipault.com</p><p><strong>Website:</strong> <a href="https://www.lipault.com" target="_blank">lipault.com</a></p></div></div></div>
+                <div class="brand-card" onclick="toggleBrandDetails(this)"><div class="brand-logo">P</div><h3>Paravel</h3><p>Sustainable travel goods with eco-friendly materials.</p><div class="brand-details"><div class="contact-info"><p><strong>Repair Hotline:</strong> +1-888-726-0001</p><p><strong>Address:</strong> 401 Broadway, New York, NY 10013, USA</p><p><strong>Email:</strong> hello@tourparavel.com</p><p><strong>Website:</strong> <a href="https://www.tourparavel.com" target="_blank">tourparavel.com</a></p></div></div></div>
+                <div class="brand-card" onclick="toggleBrandDetails(this)"><div class="brand-logo">G</div><h3>Globe-Trotter</h3><p>Handcrafted luxury suitcases made in England since 1897.</p><div class="brand-details"><div class="contact-info"><p><strong>Repair Hotline:</strong> +44-20-7409-6900</p><p><strong>Address:</strong> 35 Albemarle St, London W1S 4JD, UK</p><p><strong>Email:</strong> info@globe-trotter.com</p><p><strong>Website:</strong> <a href="https://www.globe-trotter.com" target="_blank">globe-trotter.com</a></p></div></div></div>
+                <div class="brand-card" onclick="toggleBrandDetails(this)"><div class="brand-logo">O</div><h3>Osprey</h3><p>Performance travel packs and luggage for adventure travelers.</p><div class="brand-details"><div class="contact-info"><p><strong>Repair Hotline:</strong> +1-866-284-7830</p><p><strong>Address:</strong> 115 Progress Circle, Cortez, CO 81321, USA</p><p><strong>Email:</strong> care@osprey.com</p><p><strong>Website:</strong> <a href="https://www.osprey.com" target="_blank">osprey.com</a></p></div></div></div>
+                <div class="brand-card" onclick="toggleBrandDetails(this)"><div class="brand-logo">T</div><h3>Travelpro</h3><p>Preferred by airline crews, known for durability and innovation.</p><div class="brand-details"><div class="contact-info"><p><strong>Repair Hotline:</strong> +1-800-741-7471</p><p><strong>Address:</strong> 700 Banyan Trail, Boca Raton, FL 33431, USA</p><p><strong>Email:</strong> support@travelpro.com</p><p><strong>Website:</strong> <a href="https://www.travelpro.com" target="_blank">travelpro.com</a></p></div></div></div>
+            </div>
+        </div>
+    </section>
+    <!-- How It Works -->
+    <section class="how-it-works" id="how-it-works">
+        <div class="container">
+            <h2>How Our Service Works</h2>
+            <div class="steps">
+                <div class="step">
+                    <div class="step-number">1</div>
+                    <h3>Select Your Brand</h3>
+                    <p>Choose your suitcase brand from our comprehensive list of premium manufacturers.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">2</div>
+                    <h3>Find Service Center</h3>
+                    <p>Access authorized repair center contact information and locations worldwide.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">3</div>
+                    <h3>Schedule Repair</h3>
+                    <p>Contact the service center directly to schedule your repair appointment.</p>
+                </div>
+                <div class="step">
+                    <div class="step-number">4</div>
+                    <h3>Quality Guarantee</h3>
+                    <p>Enjoy professional repair services with warranty coverage and quality assurance.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Pricing -->
+    <section class="pricing" id="pricing">
+        <div class="container">
+            <h2>Service Plans</h2>
+            <div class="pricing-grid">
+                <div class="pricing-card">
+                    <h3>Basic Access</h3>
+                    <div class="price">Free</div>
+                    <ul class="pricing-features">
+                        <li>Brand information access</li>
+                        <li>Basic contact details</li>
+                        <li>General repair guidelines</li>
+                        <li>Community support</li>
+                    </ul>
+                    <a href="#" class="cta-button">Get Started</a>
+                </div>
+                <div class="pricing-card featured">
+                    <h3>Premium Plus</h3>
+                    <div class="price">$29<span class="price-period">/year</span></div>
+                    <ul class="pricing-features">
+                        <li>Priority service center access</li>
+                        <li>Direct repair scheduling</li>
+                        <li>Warranty tracking</li>
+                        <li>Expert consultation</li>
+                        <li>Mobile app access</li>
+                        <li>24/7 support hotline</li>
+                    </ul>
+                    <a href="#" class="cta-button">Choose Premium</a>
+                </div>
+                <div class="pricing-card">
+                    <h3>Travel Pro</h3>
+                    <div class="price">$99<span class="price-period">/year</span></div>
+                    <ul class="pricing-features">
+                        <li>All Premium Plus features</li>
+                        <li>Concierge repair service</li>
+                        <li>Travel insurance integration</li>
+                        <li>Global pickup & delivery</li>
+                        <li>Priority parts sourcing</li>
+                        <li>Business traveler support</li>
+                    </ul>
+                    <a href="#" class="cta-button">Go Professional</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Testimonials -->
+    <section class="testimonials" id="testimonials">
+        <div class="container">
+            <h2>What Our Customers Say</h2>
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">★★★★★</div>
+                    <p class="testimonial-text">"Incredible service! My Samsonite was repaired quickly and professionally. The direct connection to authorized service centers saved me hours of searching."</p>
+                    <div class="testimonial-author">- Sarah Mitchell, Business Traveler</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">★★★★★</div>
+                    <p class="testimonial-text">"As a frequent flyer, having access to global repair services is invaluable. The warranty tracking feature is a game-changer for maintaining my luggage collection."</p>
+                    <div class="testimonial-author">- Michael Chen, Consultant</div>
+                </div>
+                <div class="testimonial-card">
+                    <div class="testimonial-rating">★★★★★</div>
+                    <p class="testimonial-text">"The expert consultation helped me choose the perfect suitcase for my European tour. The repair service network gives me peace of mind while traveling."</p>
+                    <div class="testimonial-author">- Emma Rodriguez, Travel Blogger</div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- FAQ -->
+    <section class="faq" id="faq">
+        <div class="container">
+            <h2>Frequently Asked Questions</h2>
+            <div class="faq-list">
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How do I find the right repair center for my suitcase brand?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Simply click on your suitcase brand in our brands section to access authorized repair center contact information, including phone numbers, addresses, and email contacts for your region.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Are the repair services covered under warranty?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Warranty coverage depends on your suitcase's original warranty terms and the type of repair needed. Our service centers will assess your case and inform you about warranty eligibility before starting any work.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>How long does a typical suitcase repair take?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Most common repairs like wheel replacement, handle fixes, and zipper repairs are completed within 24-48 hours. More complex repairs may take 3-5 business days, depending on parts availability.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Do you offer international repair services?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Yes! Our network includes authorized service centers across North America, Europe, and major international destinations. Premium and Travel Pro members have access to priority international services.</p>
+                    </div>
+                </div>
+                <div class="faq-item">
+                    <div class="faq-question">
+                        <span>Can I track my repair status online?</span>
+                        <span class="faq-toggle">+</span>
+                    </div>
+                    <div class="faq-answer">
+                        <p>Premium Plus and Travel Pro members can track repair status through our mobile app and online portal. You'll receive real-time updates on your repair progress and estimated completion times.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>RollingSuitcase</h3>
+                    <p>Your trusted partner for premium rolling suitcase solutions and professional repair services worldwide.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="#brands">Brand Directory</a></li>
+                        <li><a href="#how-it-works">Repair Services</a></li>
+                        <li><a href="#pricing">Service Plans</a></li>
+                        <li><a href="#">Warranty Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="#faq">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Live Chat</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 RollingSuitcase. All rights reserved. | Connecting travelers with premium luggage solutions worldwide.</p>
+            </div>
+        </div>
+    </footer>
+    <script>
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+        document.querySelectorAll('.faq-item').forEach(item => {
+            item.addEventListener('click', function() {
+                this.classList.toggle('active');
+            });
+        });
+        function toggleBrandDetails(card) {
+            const isActive = card.classList.contains('active');
+            document.querySelectorAll('.brand-card').forEach(c => c.classList.remove('active'));
+            if (!isActive) card.classList.add('active');
+        }
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html> 
