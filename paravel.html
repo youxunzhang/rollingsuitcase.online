@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Paravel - Premium Luggage Solutions | RollingSuitcase</title>
+    <meta name="description" content="Discover Paravel's premium luggage collection. Professional repair services and authorized service centers worldwide.">
+    <meta name="keywords" content="Paravel, luggage, suitcase, repair, service, travel">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: -apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,Oxygen,Ubuntu,Cantarell,sans-serif; background: #f5f5f7; color: #1d1d1f; }
+        .container { max-width: 1200px; margin: 0 auto; padding: 0 20px; }
+        header { background: rgba(251,251,253,0.8); backdrop-filter: blur(20px); position: fixed; width: 100%; top: 0; z-index: 1000; border-bottom: 1px solid #d2d2d7; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 1rem 0; }
+        .logo { font-size: 1.5rem; font-weight: 700; color: #1d1d1f; }
+        .nav-links { display: flex; list-style: none; gap: 2rem; }
+        .nav-links a { text-decoration: none; color: #1d1d1f; font-weight: 500; transition: color 0.3s; }
+        .nav-links a:hover { color: #007aff; }
+        .mobile-menu { display: none; background: none; border: none; font-size: 1.5rem; cursor: pointer; }
+        .hero { background: linear-gradient(135deg,#007aff,#5856d6); color: #fff; padding: 120px 0 80px; text-align: center; }
+        .hero h1 { font-size: 3.5rem; font-weight: 800; margin-bottom: 1rem; line-height: 1.2; }
+        .hero p { font-size: 1.25rem; margin-bottom: 2rem; opacity: 0.9; }
+        .brand-info { padding: 80px 0; background: #fff; }
+        .brand-info h2 { text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 3rem; color: #1d1d1f; }
+        .brand-content { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; }
+        .brand-description { color: #6e6e73; line-height: 1.8; font-size: 1.1rem; }
+        .brand-stats { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem; }
+        .stat-item { text-align: center; padding: 1.5rem; background: #f5f5f7; border-radius: 12px; }
+        .stat-number { font-size: 2rem; font-weight: 700; color: #007aff; }
+        .stat-label { color: #6e6e73; margin-top: 0.5rem; }
+        .products { padding: 80px 0; background: #f5f5f7; }
+        .products h2 { text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 3rem; color: #1d1d1f; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2rem; }
+        .product-card { background: #fff; padding: 2rem; border-radius: 16px; text-align: center; transition: transform 0.3s; }
+        .product-card:hover { transform: translateY(-5px); }
+        .product-icon { font-size: 3rem; margin-bottom: 1rem; }
+        .product-card h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #1d1d1f; }
+        .product-card p { color: #6e6e73; line-height: 1.6; }
+        .services { padding: 80px 0; background: #fff; }
+        .services h2 { text-align: center; font-size: 2.5rem; font-weight: 700; margin-bottom: 3rem; color: #1d1d1f; }
+        .service-details { background: #f5f5f7; padding: 3rem; border-radius: 16px; margin-bottom: 2rem; }
+        .service-details h3 { font-size: 1.5rem; font-weight: 600; margin-bottom: 1rem; color: #1d1d1f; }
+        .contact-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 2rem; }
+        .contact-item { background: #fff; padding: 1.5rem; border-radius: 12px; border: 1px solid #d2d2d7; }
+        .contact-item h4 { font-size: 1.1rem; font-weight: 600; margin-bottom: 0.5rem; color: #1d1d1f; }
+        .contact-item p { color: #6e6e73; }
+        .cta-button { background: #ff3b30; color: #fff; padding: 1rem 2rem; text-decoration: none; border-radius: 12px; font-weight: 600; font-size: 1.1rem; transition: background 0.3s; display: inline-block; }
+        .cta-button:hover { background: #d70015; }
+        footer { background: #1d1d1f; color: #fff; padding: 60px 0 20px; }
+        .footer-content { display: grid; grid-template-columns: repeat(auto-fit,minmax(250px,1fr)); gap: 2rem; margin-bottom: 2rem; }
+        .footer-section h3 { font-size: 1.25rem; font-weight: 600; margin-bottom: 1rem; color: #fff; }
+        .footer-section ul { list-style: none; }
+        .footer-section ul li { margin-bottom: 0.5rem; }
+        .footer-section ul li a { color: #a1a1a6; text-decoration: none; transition: color 0.3s; }
+        .footer-section ul li a:hover { color: #007aff; }
+        .footer-bottom { text-align: center; padding-top: 2rem; border-top: 1px solid #424245; color: #a1a1a6; }
+        @media (max-width: 768px) { .nav-links { display: none; } .mobile-menu { display: block; } .hero h1 { font-size: 2.5rem; } .brand-content { grid-template-columns: 1fr; gap: 2rem; } .brand-stats { grid-template-columns: 1fr; } }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <nav class="container">
+            <div class="logo">RollingSuitcase</div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="index.html#features">Features</a></li>
+                <li><a href="index.html#brands">Brands</a></li>
+                <li><a href="index.html#how-it-works">How It Works</a></li>
+                <li><a href="index.html#pricing">Pricing</a></li>
+                <li><a href="index.html#testimonials">Reviews</a></li>
+                <li><a href="index.html#faq">FAQ</a></li>
+            </ul>
+            <button class="mobile-menu">☰</button>
+        </nav>
+    </header>
+
+    <!-- Hero -->
+    <section class="hero">
+        <div class="container">
+            <h1>Paravel</h1>
+            <p>Sustainable travel goods with eco-friendly materials</p>
+            <a href="#services" class="cta-button">Get Repair Service</a>
+        </div>
+    </section>
+
+    <!-- Brand Info -->
+    <section class="brand-info">
+        <div class="container">
+            <h2>About Paravel</h2>
+            <div class="brand-content">
+                <div>
+                    <p class="brand-description">
+                        Founded in 2016, Paravel has established itself as a leading name in the luggage industry, 
+                        known for its commitment to quality, innovation, and customer satisfaction. With decades of experience 
+                        in creating travel solutions, Paravel continues to push the boundaries of design and functionality.
+                    </p>
+                    <p class="brand-description">
+                        From their earliest designs to their latest innovations, Paravel has maintained a focus on 
+                        creating luggage that meets the diverse needs of modern travelers. Their commitment to quality 
+                        craftsmanship and innovative design has made them a trusted choice for travelers worldwide.
+                    </p>
+                </div>
+                <div class="brand-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">2016</div>
+                        <div class="stat-label">Founded</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">15+</div>
+                        <div class="stat-label">Countries Served</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">50+</div>
+                        <div class="stat-label">Service Centers</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">3-year</div>
+                        <div class="stat-label">Warranty</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products -->
+    <section class="products">
+        <div class="container">
+            <h2>Popular Paravel Collections</h2>
+            <div class="products-grid">
+                
+                <div class="product-card">
+                    <div class="product-icon">💼</div>
+                    <h3>Aviator</h3>
+                    <p>Sustainable hardside luggage with recycled materials and modern design</p>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-icon">👜</div>
+                    <h3>Cabana</h3>
+                    <p>Eco-friendly softside collection with water-resistant materials</p>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-icon">🎒</div>
+                    <h3>Weekender</h3>
+                    <p>Sustainable weekend bags with recycled fabrics and practical design</p>
+                </div>
+                
+                <div class="product-card">
+                    <div class="product-icon">🧳</div>
+                    <h3>Accessories</h3>
+                    <p>Eco-conscious travel accessories with sustainable materials</p>
+                </div>
+                
+            </div>
+        </div>
+    </section>
+
+    <!-- Services -->
+    <section class="services" id="services">
+        <div class="container">
+            <h2>Paravel Repair Services</h2>
+            <div class="service-details">
+                <h3>Professional Repair Services</h3>
+                <p>Paravel offers comprehensive repair services through their global network of authorized service centers. 
+                Whether you need wheel replacement, handle repair, zipper fixes, or shell damage repair, our certified 
+                technicians use genuine Paravel parts to restore your luggage to its original condition.</p>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-item">
+                    <h4>Repair Hotline</h4>
+                    <p>+1-888-726-0001</p>
+                </div>
+                <div class="contact-item">
+                    <h4>Headquarters</h4>
+                    <p>401 Broadway, New York, NY 10013, USA</p>
+                </div>
+                
+                
+                <div class="contact-item">
+                    <h4>Email Support</h4>
+                    <p>hello@tourparavel.com</p>
+                </div>
+                <div class="contact-item">
+                    <h4>Official Website</h4>
+                    <p><a href="https://www.tourparavel.com" target="_blank">tourparavel.com</a></p>
+                </div>
+                <div class="contact-item">
+                    <h4>Warranty Support</h4>
+                    <p>3-year warranty on most products</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>RollingSuitcase</h3>
+                    <p>Your trusted partner for premium rolling suitcase solutions and professional repair services worldwide.</p>
+                </div>
+                <div class="footer-section">
+                    <h3>Services</h3>
+                    <ul>
+                        <li><a href="index.html#brands">Brand Directory</a></li>
+                        <li><a href="index.html#how-it-works">Repair Services</a></li>
+                        <li><a href="index.html#pricing">Service Plans</a></li>
+                        <li><a href="#">Warranty Support</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Support</h3>
+                    <ul>
+                        <li><a href="index.html#faq">FAQ</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Live Chat</a></li>
+                        <li><a href="#">Help Center</a></li>
+                    </ul>
+                </div>
+                <div class="footer-section">
+                    <h3>Company</h3>
+                    <ul>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">Privacy Policy</a></li>
+                        <li><a href="#">Terms of Service</a></li>
+                        <li><a href="#">Careers</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2024 RollingSuitcase. All rights reserved. | Connecting travelers with premium luggage solutions worldwide.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        document.querySelector('.mobile-menu').addEventListener('click', function() {
+            const navLinks = document.querySelector('.nav-links');
+            navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+        });
+    </script>
+</body>
+</html>
